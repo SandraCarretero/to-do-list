@@ -1,6 +1,222 @@
-body {
-	margin: 0;
-	font-family: sans-serif;
-	background-color: #333;
-	/* background-image: url(../assets/images/sleep-cat.jpeg); */
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+:root{
+    --body-bg:#494c6b;
+    --task-bg: #fff;
+    --text-color: #494c6b;
+    --header-color: #bec8e4;
+    --text-color-completed: #9092a5;
+    --placeholder-color: #9495a5;
+    --shadow: rgba(170, 170, 170, 0.3);
+    --filter-active: #494c6b;
+}
+
+body{
+    margin: 0 auto;
+    max-width: 1440px;
+    text-align: center;
+    color: var(--text-color-completed);
+    font-family: 'Josefin Sans', sans-serif;
+    user-select: none;
+    background-color: var(--body-bg);
+}
+
+body.dark {
+    --body-bg: #320645;
+    --task-bg: #25273d;
+    --text-color: #c8cbe7;
+    --header-color: #54386A;
+    --text-color-completed: #b3b3c6;
+    --placeholder-color: #9495a5;
+    --shadow: rgba(22, 22, 22, 0.769);
+    --filter-active: #54386A;
+  }
+
+.header{
+    height: 300px;
+    padding: 3rem 1.5rem;
+    background-color: var(--header-color) ;
+}
+
+.header__content{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 330px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.title{
+    margin: 0;
+    color: white;
+}
+
+.mode{
+    width: 20px;
+    cursor: pointer;
+}
+
+
+.main{
+    position: absolute;
+    top: 6.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.form{
+    position: relative;
+}
+
+.label-task{
+    position: absolute;
+    top: 0.8rem;
+    left: 1.25rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid var(--text-color-completed);
+}
+
+.input-task{
+    height: 3rem;
+    width: 100%;
+    padding-left: 3.5rem;
+    margin-bottom: 1rem;
+    color: var(--placeholder-color);
+    background-color: var(--task-bg);
+    border-radius: 0.4rem;
+    border: none;
+    outline: none;
+    box-shadow: 0 15px 15px -5px vñar(--shadow);
+}
+
+.tasks {
+    border-radius: 0.4rem 0.4rem 0 0;
+    color: #c8cbe7;
+    background-color: var(--task-bg);
+    color: var(--text-color);
+    box-shadow: 0 65px 15px -5px var(--shadow);
+}
+
+.task-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 3rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid rgba(151, 151, 151, 0.3);
+    cursor: pointer;
+}
+
+.task-container:last-child{
+    border-radius: 0;
+}
+
+.check-task{
+    display: none;
+}
+
+.check-task:checked + .text-task {
+    text-decoration: line-through;
+    color: var(--text-color-completed);
+}
+
+.text-task{
+    padding-left: 2.5rem;
+}
+
+.text-task::after{
+    content: '';
+    position: absolute;
+    top: 0.8rem;
+    left: 1.25rem;
+    width: 20px;
+    height: 20px;
+    border: 1px solid var(--text-color-completed);
+    border-radius: 50%;
+}
+
+.check-task:checked + .text-task::after {
+    background-image: url('..//assets/images/icon-check.svg'), linear-gradient(45deg, var(--body-bg), var(--header-color));
+    background-repeat: no-repeat;
+    background-size: 10px 8px, cover;
+    background-position: center;
+    border: none;
+}
+
+@media (hover: hover) {
+    .task-container:hover .cross-task {
+      display: block;
+    }
+  }
+
+  
+.cross-task{
+    width: 0.75rem;
+
+}
+
+.task-delete {
+    width: 0.75rem;
+}
+
+.tasks-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.25rem;
+    font-size: 12px;
+    background-color: var(--task-bg);
+    margin-bottom: 1rem;
+    border-radius: 0 0 0.4rem 0.4rem;
+}
+
+.delete-task{
+    cursor: pointer;
+}
+  
+.tasks-filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 3rem;
+    padding-inline: 5.0625rem;
+    background-color: var(--task-bg);
+    border-radius: 0.3125rem;
+}
+
+.filter {
+    background: none;
+    border: none;
+    color: var(--text-color-completed);
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+  
+.filter--active{
+    color: var(--filter-active);
+}
+
+@media screen and (min-width: 768px) {
+    .header__content {
+        max-width: 540px;
+    }
+    .input-task {
+        width: 33.75rem;
+    }
+    .tasks-filters {
+        position: absolute;
+        bottom: 1.25rem;
+        left: 6rem;
+        width: 168px;
+        transform: translateX(50%);
+    }
 }
