@@ -1,4 +1,6 @@
 import { modeElement } from './dom';
+import sun from '../assets/images/icon-sun.svg'
+import moon from '../assets/images/icon-moon.svg'
 
 let darkMode = false;
 
@@ -7,10 +9,10 @@ const changeMode = () => {
 
 	if (darkMode) {
 		document.body.classList.add('dark');
-		modeElement.src = '../assets/images/icon-sun.svg';
+		modeElement.src = sun;
 	} else {
 		document.body.classList.remove('dark');
-		modeElement.src = '../assets/images/icon-moon.svg';
+		modeElement.src = moon;
 	}
 };
 
